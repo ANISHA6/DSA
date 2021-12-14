@@ -1,0 +1,25 @@
+public class Solution {  
+
+    public static void selectionSort(int[] arr) {
+    	//Your code goes here
+        //Find min ans swap with i index
+        int n=arr.length;
+        for(int i=0;i<n;i++){
+            int minv=arr[i];
+            int minindex=i;
+            for(int j=i;j<n;j++){
+                
+                if(minv>arr[j]){
+                    minv=arr[j];
+                    minindex=j;
+                }
+                
+            }
+           
+            int temp=arr[minindex];
+            arr[minindex]=arr[i];
+            arr[i]=temp;
+        }
+    }   
+
+}
