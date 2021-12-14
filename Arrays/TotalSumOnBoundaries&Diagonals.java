@@ -48,4 +48,6 @@ public class Solution {
             totalsum-=mat[n/2][n/2];
         }
         System.out.println(totalsum);
+	}
+}
         
