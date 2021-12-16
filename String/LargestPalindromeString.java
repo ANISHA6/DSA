@@ -28,15 +28,15 @@ public class Main {
         e=str.length()-1;
         while(s<=e){
             if(s==e){
-                if(k==1){
+                if(k>0){
                     newstr[s]='9';
                 }
             }
-            if(k>=2 && str.charAt(s)==newstr[s] && str.charAt(e)==newstr[e]){
+            if(k>=2 && (str.charAt(s)==newstr[s] && str.charAt(e)==newstr[e])){
                 newstr[s]=newstr[e]='9';
                 k-=2;
             }
-            else if(k>=1 && (str.charAt(s)!=newstr[s])||(str.charAt(e)!=newstr[e])){
+            else if(k>=1 && ((str.charAt(s)!=newstr[s])||(str.charAt(e)!=newstr[e]))){
                 newstr[s]=newstr[e]='9';
                 k--;
             } 
