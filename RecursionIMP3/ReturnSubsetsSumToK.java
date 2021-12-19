@@ -24,6 +24,14 @@ public class solution {
             }
             p++;
         }
+	    
+	    //1st way to copying elements from sol2 to output
+	    
+// 	    for(int i=0;i<sol2.length;i++){
+//             output[p++]=sol2[i];
+//         }
+	    
+	    // 2nd way to copying elements from sol2 to output
         for(int i=0;i<sol2.length;i++){
             output[p]=new int[sol2[i].length];// Also called jagged array in java
            
