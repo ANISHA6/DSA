@@ -1,6 +1,6 @@
 public class Solution {
     
-    //TC:O(logN), SC:O(1)
+    //TC:O(N), SC:O(1)
     // Calling it inplace heap sort because we are not using any extra space here, to sort the heap
     public static void downHeapify(int[] arr, int i, int n){
         
