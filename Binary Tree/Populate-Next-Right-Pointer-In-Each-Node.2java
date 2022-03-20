@@ -1,0 +1,49 @@
+/****************************************************************
+
+    Following is the class structure of the TreeNode class:
+
+	class TreeNode<T> {
+	    public T val;
+	    public TreeNode<T> left;
+	    public TreeNode<T> right;
+	    public TreeNode<T> next;
+
+	    TreeNode(T val) {
+	        this.val = val;
+	        left = null;
+	        right = null;
+	        next  = null;
+	    }
+	}
+
+
+*****************************************************************/
+
+public class Solution {
+	public static void connectNext(TreeNode<Integer> root) {
+		// Write your code here
+        if(root==null){
+            return;
+        }
+        TreeNode<Integer> head=root;
+        while(head!=null && head.left!=null){
+            TreeNode<Integer> n=head;
+            while(true){
+              n.left.next=n.right;
+                if(n.next==null){
+                    break;
+                }
+                n.right.next=n.next.left;
+                n=n.next;
+            } 
+            head=head.left;
+            
+        }
+        return;
+        
+	}
+}
+
+
+
+
