@@ -13,6 +13,13 @@ public static String findWinner(int n, int x, int y) {
             else
                 dp[i]=false;
         }
+	 if(dp[n])
+            return "Beerus";
+        else
+            return "Whis";
+	}
+
+
         
   
 //   Whis and Beerus are playing a new game today. They form a tower of N coins and make a move in alternate turns. Beerus plays first. In one step, 
