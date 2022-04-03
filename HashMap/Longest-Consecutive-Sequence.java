@@ -33,15 +33,10 @@ public class Solution {
             else {
                 count = 1;
             }
-
-            mx = Math.max(mx, count);
             
-        }
-
-        return mx;
-    }
-}
-
+            //Method 3 , using hashmap
+            
+            
 
 // Method--2
 /*  
@@ -90,3 +85,72 @@ public class Solution {
         return mx;
     }
 }
+         //Method 3, using hashmap   
+            
+ import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+
+public class Solution {
+	public static ArrayList<Integer> longestConsecutiveIncreasingSequence(int[] arr) {
+		/* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+	 	 * Taking input and printing output is handled automatically.
+		*/
+        
+        ArrayList<Integer> ans=new ArrayList<>();
+        int start=-1;
+        int end=-1;
+        int mlen=0;
+        HashMap<Integer, Boolean> map=new HashMap<>();
+        int n=arr.length;
+        
+        for(int i=0;i<n;i++){
+            map.put(arr[i],true);
+        }
+        
+        
+        for(int val:arr){
+            if(map.containsKey(val-1))
+                map.put(val,false);
+        }
+        
+        for(int val:arr){
+            if(map.get(val)==true){
+                int s=val;
+                int e=val;
+                int l=1;
+                while(map.containsKey(val+l)){
+                 
+                    e=val+l;
+                    l++;
+                }
+                if(l>mlen){
+                    mlen=l;
+                    start=s;
+                    end=e;
+                }
+            }
+        }
+        if(start!=end){
+            ans.add(start);
+            ans.add(end);
+        }else
+            ans.add(start);
+        return ans;
+        }
+}
+
+            mx = Math.max(mx, count);
+            
+        }
+
+        return mx;
+    }
+}
+
+            
+            
+            
