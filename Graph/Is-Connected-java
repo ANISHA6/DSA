@@ -1,0 +1,62 @@
+import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class Solution {
+    public static void connected(int[][] matrix, int v, int e){
+        
+        if(v==0 && e==0){
+            
+            System.out.print("true");
+            return;
+        }
+        Queue<Integer> q=new LinkedList<>();
+        boolean[] visited=new boolean[matrix.length];
+        q.add(0);
+        visited[0]=true;
+        
+        while(!q.isEmpty()){
+            int cv=q.poll();
+            for(int i=0;i<matrix.length;i++){
+                if(matrix[cv][i]==1 && !visited[i]){
+                    q.add(i);
+                    visited[i]=true;
+                }
+            }
+        }
+        
+        for(int i=0;i<matrix.length;i++){
+            if(visited[i]==false){
+                System.out.println("false");
+                return;
+            }
+        }
+        System.out.print("true");
+    } 
+    
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+       
+        /* Write Your Code Here
+		 * Complete the Rest of the Program
+		 * You have to take input and print the output yourself
+		 */
+         Scanner sc=new Scanner(System.in);
+        int v=sc.nextInt();
+        int e=sc.nextInt();
+        int[][] matrix=new int[v][v];
+        
+        for(int i=0;i<e;i++){
+            int v1=sc.nextInt();
+            int v2=sc.nextInt();
+            matrix[v1][v2]=1;
+            matrix[v2][v1]=1;  
+        }
+
+        connected(matrix,v,e);
+   
+
+	}
+
+}
