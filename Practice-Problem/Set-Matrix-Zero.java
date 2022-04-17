@@ -56,8 +56,8 @@ public class Solution {
 //Method 2
 
 /*
-    Time Complexity: O(N * M * (N + M)) 
-    Space Complexity:O(N * M) 
+    Time Complexity: O(N * M) 
+    Space Complexity: O(N + M) 
 
     Where N & M are dimensions of the given matrix.
 */
@@ -70,46 +70,36 @@ public class Solution {
 		int n = matrix.length;
 		int m = matrix[0].length;
 
-		// Declaring isZero boolean matrix.
-		Boolean isZero[][] = new Boolean[n][m];
+		// Declaring two boolean arrays colZero and rowZero.
+		Boolean colZero[] = new Boolean[m];
+		Boolean rowZero[] = new Boolean[n];
+		for (int i = 0; i < m; i++) {
+			colZero[i] = false;
+		}
 		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
-				isZero[i][j] = false;
-			}
+			rowZero[i] = false;
 		}
 
-		// Traversing the original matrix.
+		// Traversing the original matrix and filling values for rowZero and calZero.
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
-
-				// If that element of the matrix is equal to 0.
 				if (matrix[i][j] == 0) {
-
-					// Traversing its complete column and setting all the isZero values to be true.
-					for (int k = 0; k < n; k++) {
-						isZero[k][j] = true;
-					}
-
-					// Traversing its complete row and setting all the isZero values to be true.
-					for (int k = 0; k < m; k++) {
-						isZero[i][k] = true;
-					}
+					colZero[j] = rowZero[i] = true;
 				}
 			}
 		}
 
-		// Travrsing isZero and if isZero at an index is true then we replace that
-		// element with zero in original matrix.
+		// Traversing the original matrix and changing values of matrix according to
+		// rowZero and colZero.
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
-				if (isZero[i][j]) {
+				if (rowZero[i] || colZero[j]) {
 					matrix[i][j] = 0;
 				}
 			}
 		}
 	}
 }
-
 //Method 3
 /*
     Time Complexity: O(N * M) 
