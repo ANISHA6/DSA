@@ -65,34 +65,70 @@ public class Solution {
 
 */
 
-import java.util.*;
+/*
+
+	Time complexity: O(N*(log(N))) 
+	Space complexity: O(N)
+	
+	where N is the total number of elements in the array.
+
+*/
+
+import java.util.PriorityQueue;
+import java.util.Collections;
 
 public class Solution {
+
     public static int[] findMedian(int[] arr, int n) {
-        // Write your code here.
-        PriorityQueue<Integer> max=new PriorityQueue<>();//By default max heap
-        PriorityQueue<Integer> min=new PriorityQueue<>(Collections.reverseOrder());// Making min heap by reversing it
-        
-        int[] medians=new int[n];
-        
-        for(int i=0;i<n;i++){
-            int num=arr[i];
-            max.add(num);
-            min.add(max.poll());
-            
-            if(max.size()<min.size()){
-                max.add(min.poll());
-                
+
+        // To store the medians
+        int[] medians = new int[n];
+
+        // min heap
+        PriorityQueue<Integer> lo = new PriorityQueue<>();
+
+        // max heap
+        PriorityQueue<Integer> hi = new PriorityQueue<>(Collections.reverseOrder());
+
+        for (int i = 0; i < n; i++) {
+
+            int num = arr[i];
+
+            // Add to max heap
+            lo.add(num);
+
+            // Balancing step, that is inserting the current element at its position that is
+            // either less than median or more than median value
+            hi.add(lo.poll());
+
+            // Maintain size property, as 'lo' can have utmost one more element than 'hi' or
+            // both have equal number of elements
+            if (lo.size() < hi.size()) {
+                lo.add(hi.poll());
+
             }
+
             int median;
-            if(max.size()>min.size()){
-                median=max.peek();
-            }else{
-                median=(max.peek()+min.peek())/2;
+
+            // For odd number of elements
+            if (lo.size() > hi.size()) {
+
+                median = lo.peek();
+
             }
-            medians[i]=median;
+            // For even number of elements
+            else {
+
+                median = (lo.peek() + hi.peek()) / 2;
+
+            }
+
+            medians[i] = median;
         }
+
         return medians;
-        
+
     }
+
 }
+
